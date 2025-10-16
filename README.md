@@ -6,7 +6,7 @@ Angular 20 CRUD app for tasks (to-do). Uses Tailwind CSS and Angular Material.
 - Create, Read, Update, Delete tasks
 - Reactive forms with validation
 - Routing: /tasks, /tasks/add, /tasks/:id, /tasks/:id/edit
-- Uses BehaviorSubject to store state (mock API)
+- Uses Httpclient REST APIs (mock API)
 
 ## Setup
 1. `npm install`
