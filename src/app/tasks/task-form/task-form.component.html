@@ -1,0 +1,45 @@
+<div class="p-4 max-w-2xl mx-auto">
+    <h2 class="text-xl font-semibold mb-4">{{ taskId ? 'Edit Task' : 'Add Task' }}</h2>
+
+    <form [formGroup]="form" (ngSubmit)="save()" class="space-y-4">
+        <div>
+            <label class="block text-sm font-medium mb-1">Title</label>
+            <input formControlName="title" class="w-full p-2 border rounded" />
+            @if (form.get('title')?.touched && form.get('title')?.invalid) {
+            <div class="text-red-500 text-sm mt-1">
+                @if (form.get('title')?.errors?.['required']) {
+                <div>Title is required</div>
+                }
+            </div>
+            }
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium mb-1">Description</label>
+            <textarea formControlName="description" rows="4" class="w-full p-2 border rounded"></textarea>
+            @if (form.get('description')?.touched && form.get('description')?.invalid) {
+            <div class="text-red-500 text-sm mt-1">
+                @if (form.get('description')?.errors?.['required']) {
+                <div>Description is required</div>
+                }
+            </div>
+            }
+        </div>
+
+        <div class="flex items-center gap-2">
+            <input type="checkbox" formControlName="completed" id="completed" />
+            <label for="completed" class="text-sm">Completed</label>
+        </div>
+
+        <div class="flex gap-2">
+            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded cursor-pointer" [disabled]="saving">
+                {{ saving ? 'Saving…' : 'Save' }}
+            </button>
+            <a class="px-4 py-2 border rounded cursor-pointer" (click)="cancel()">Cancel</a>
+        </div>
+
+        @if (error) {
+        <div class="text-red-500 mt-2">{{ error }}</div>
+        }
+    </form>
+</div>
